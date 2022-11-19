@@ -51,6 +51,7 @@ function Analytics() {
     range: [MARGIN, innerWidth],
     domain: barChartData.map(barChartAccessor.xAccessor),
     padding: 0.85, // Adjust to center bars, if you're not using the bandwidth
+    // Testing
   })
 
   const yScale = scaleLinear({
