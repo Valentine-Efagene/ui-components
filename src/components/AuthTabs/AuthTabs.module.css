@@ -1,0 +1,83 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 0.5em;
+  padding: 6rem 0;
+  width: 70%;
+  max-width: 40rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.rings {
+  position: absolute;
+  top: -1.5em;
+  right: -2.5em;
+}
+
+.firstEllipse {
+  position: absolute;
+  top: -0em;
+  right: -0em;
+}
+
+.secondEllipse {
+  position: absolute;
+  top: -0em;
+  right: -0em;
+}
+
+.thirdEllipse {
+  position: absolute;
+  top: -0em;
+  right: -0em;
+}
+
+.tab {
+  color: #000000;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  border-bottom: 2px solid #808080;
+  margin-bottom: 4rem;
+  margin-left: 8rem;
+  margin-right: 8rem;
+  z-index: 1;
+}
+
+.tab div {
+  cursor: pointer;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: none;
+  background-color: #00000000;
+  height: 100%;
+}
+
+.formContainer {
+  margin-left: 8rem;
+  margin-right: 8rem;
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    width: calc(100% - 2rem);
+    margin: 1rem;
+  }
+
+  .formContainer,
+  .tab {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .formContainer,
+  .tab {
+    margin-left: 3rem;
+    margin-right: 3rem;
+  }
+}

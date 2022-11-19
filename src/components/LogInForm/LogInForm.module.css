@@ -1,0 +1,56 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: gray;
+}
+
+form > div {
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 480px) {
+  .options {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .rememberMeContainer {
+    margin-bottom: 1rem;
+  }
+}
+
+.input {
+  width: 100%;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.rememberMeContainer {
+  display: flex;
+  align-self: flex-start;
+}
+
+.rememberMeContainer label {
+  text-align: center;
+  font-size: 1rem;
+}
+
+.options a {
+  text-align: center;
+  font-size: 1rem;
+  text-decoration: none;
+  color: #808080;
+}
+
+.submit {
+  background: #151646;
+  border-radius: 0.5rem;
+  border: none;
+  color: #ffffff;
+  padding: 1rem 4rem;
+}

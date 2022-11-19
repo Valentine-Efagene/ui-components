@@ -1,0 +1,67 @@
+.container {
+  color: #000;
+  display: flex;
+  flex-direction: row;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #787171;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  margin: 4px 3px;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 0.4rem;
+  border: 1px solid #e3d1e1;
+}
+
+.container li span {
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
+.singleDelete {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: #00000000;
+  width: 20px;
+  height: 20px;
+  margin-left: 3px;
+}
+
+.container .clearAllButton {
+  text-align: center;
+  margin: 4px 3px;
+  border-radius: 5px;
+  background-color: rgb(132, 4, 4);
+  color: white;
+  padding: 0.4rem;
+  border: 1px solid #e3d1e1;
+}
+
+.input {
+  border: none;
+  font-size: 1rem;
+  flex: 1;
+}
+
+.input:focus {
+  /* outline: 1px solid #808080; */
+  outline: none;
+  border-radius: 5px;
+}
+
+.clearAllButton {
+  width: fit-content;
+  padding: 0.1rem 1rem;
+}

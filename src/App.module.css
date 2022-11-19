@@ -1,0 +1,19 @@
+.container {
+  position: relative;
+  width: calc(100vw - 40px);
+  height: 600px;
+  border-radius: 40px;
+  background-color: #201d47;
+}
+
+.cardBackground {
+  position: relative;
+  width: calc(100vw - 40px);
+  height: 600px;
+  border-radius: 40px;
+  background-color: #ffffff;
+  background: #ffffff;
+  box-shadow: -4.56077px 25.5403px 63.8508px rgba(143, 155, 186, 0.2);
+  backdrop-filter: blur(4.33273px);
+  border-radius: 7.29723px;
+}

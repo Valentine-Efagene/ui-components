@@ -1,0 +1,18 @@
+.container {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 100px;
+}
+
+.progress {
+  display: flex;
+}
+
+.verticalBarChart {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: 20px;
+}

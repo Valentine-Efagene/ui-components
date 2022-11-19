@@ -1,0 +1,65 @@
+.container {
+  --border-color: #d0d0d0;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 60px);
+  background: rgba(255, 255, 255, 0.0001);
+  box-shadow: 0px 4px 8px rgba(44, 39, 56, 0.08);
+  border-radius: 6px;
+  height: 52px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.container button {
+  background: rgba(255, 255, 255, 0.0001);
+  color: #0b8c56;
+  border-top: none;
+  border-bottom: none;
+}
+
+.container button:hover {
+  background-color: #0b8c56;
+  color: #ffffff;
+}
+
+.input {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.02px;
+  color: #585858;
+
+  border: none;
+}
+
+.increment {
+  font-size: 2rem;
+  border-left: 1px solid var(--border-color);
+  border-right: none;
+}
+
+.decrement {
+  font-size: 2rem;
+  border-right: 1px solid var(--border-color);
+  border-left: none;
+}

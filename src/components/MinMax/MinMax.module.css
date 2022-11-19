@@ -1,0 +1,104 @@
+.container {
+  min-width: 300px;
+  height: fit-content;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: black;
+  justify-content: center;
+
+  font-family: sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  margin: 1.5rem 0 3rem 0;
+  max-width: calc(100% - 4rem);
+}
+
+.slider {
+  position: relative;
+  z-index: 1;
+  height: 10px;
+}
+
+/* Full length */
+.slider > .track {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 5px; /* Trying to vertically center this on container */
+  bottom: 0;
+  height: 0;
+  border: 2px solid #151646;
+}
+
+/* The active region indicator */
+.slider > .range {
+  position: absolute;
+  z-index: 2;
+  left: 25%;
+  right: 25%;
+  top: 5px; /* Trying to vertically center this on container */
+  bottom: 0;
+  height: 0;
+  border: 2px solid #fff;
+  opacity: 0.3;
+}
+
+.slider > .thumb {
+  position: absolute;
+  z-index: 3;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+
+  background-color: #151646;
+  border: 1px solid #dbdbdb;
+  box-shadow: 0px 4px 8px rgba(44, 39, 56, 0.2);
+}
+
+.minLabel,
+.maxLabel {
+  position: absolute;
+  top: 1.5rem;
+  font-size: 1rem;
+  user-select: none;
+}
+
+.slider > .thumb.left {
+  left: 25%;
+  transform: translate(-15px, -10px);
+}
+
+.slider > .thumb.right {
+  right: 25%;
+  transform: translate(15px, -10px);
+}
+
+.container input[type='range'] {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+  height: 10px;
+  width: 100%;
+  appearance: none;
+  opacity: 0;
+}
+
+.container input[type='range']::-moz-range-thumb {
+  pointer-events: all;
+  width: 30px;
+  height: 30px;
+  border-radius: 0;
+  border: 0 none;
+  appearance: none;
+}
+
+.container input[type='range']::-webkit-slider-thumb {
+  pointer-events: all;
+  width: 30px;
+  height: 30px;
+  border-radius: 0;
+  border: 0 none;
+  appearance: none;
+}

@@ -1,0 +1,28 @@
+details > summary {
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    padding: 12px;
+    text-align: left;
+    list-style: none;
+    background-color: skyblue;
+}
+
+details > summary:hover {
+    background-color: rgb(114, 191, 221)
+}
+
+details > summary::after {
+    content: '\002b';
+    position: absolute;
+    right: 20px;
+}
+
+details[open] > summary::after {
+    content: '\2212';
+}
+
+details > p {
+    padding: 12px;
+    text-align: left;
+}

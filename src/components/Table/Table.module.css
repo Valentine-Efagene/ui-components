@@ -1,0 +1,110 @@
+#table{
+    display: block;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+
+tbody tr:hover {
+    background-color: black;
+}
+
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: grey;
+    color: white;
+}
+
+table td, table th {
+    padding: 8px;
+}
+
+.dropdownMenuItem { 
+    padding: 12px; 
+    display: block;
+    background-color: white;
+}
+
+.dropdownMenuItem:hover { 
+    background-color: grey;
+}
+
+.toolbarContainer {
+    display: block;
+    margin: 12px 0;
+}
+
+.multipleSelectOptions {
+    display: flex;
+    margin-top: 12px;
+}
+
+.multipleSelectButton {
+    background-color: white;
+    cursor: pointer;
+    padding: 12px;
+    border: 1px solid lightgray;
+    margin-right: 12px;
+}
+
+.multipleSelectButton:hover {
+    background-color: lightgray;
+}
+
+#toolbar {
+    display: flex;
+    margin: 12px 0;
+}
+
+#toolbar > div {
+    margin-right: 12px;
+}
+
+.multipleSelectOptions > span {
+    align-self: center;
+    font-size: 16px;
+    margin-right: 12px;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #0000003b;
+}
+
+tr {
+    text-align: start;
+}
+
+tbody > tr > td:last-child{
+    position: relative;
+}
+
+tbody > tr > td:last-child > button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: white;
+    width: 100%;
+    height: 100%;
+    font-size: 25px
+}
+
+.contextMenu {
+    z-index: 1;
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: coral;
+    width: 100px;
+    height: 100px;
+}
+
+.verticalContainer {
+    display: flex;
+    flex-direction: column;
+}

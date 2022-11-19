@@ -1,0 +1,46 @@
+.details > summary {
+  min-width: 10rem;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+  padding: 12px;
+  text-align: left;
+  list-style: none;
+  background-color: skyblue;
+}
+
+.details > summary:hover {
+  background-color: rgb(114, 191, 221);
+}
+
+.details > summary::after {
+  content: '\002b';
+  position: absolute;
+  right: 20px;
+}
+
+.details[open] > summary::after {
+  content: '\2212';
+}
+
+.details > .options {
+  display: flex;
+  flex-direction: column;
+}
+
+.option {
+  padding: 12px;
+  text-align: left;
+}
+
+.option {
+  cursor: pointer;
+  padding: 12px;
+  text-align: left;
+  background-color: white;
+  color: black;
+}
+
+.option:hover {
+  background-color: #f2f2f2;
+}
