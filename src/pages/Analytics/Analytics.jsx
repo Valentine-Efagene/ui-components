@@ -189,9 +189,9 @@ function Analytics() {
           data={barChartData}
         />
       </div>
-      {/* <div style={{ position: 'relative', height: '500px' }}>
+      <div style={{ position: 'relative', height: '500px', margin: '40px' }}>
         <HorizontalBarChart width={500} />
-      </div> */}
+      </div>
     </div>
   )
 }

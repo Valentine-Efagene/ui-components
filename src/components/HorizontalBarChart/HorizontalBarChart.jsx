@@ -12,15 +12,21 @@ import { oneOf } from 'prop-types'
 import { string } from 'prop-types'
 import { number } from 'prop-types'
 import { Bar } from '@visx/shape'
+import { any } from 'prop-types'
 
-const MARGIN = 32
+const MARGIN = 50
 
 const accessors = {
-  xAccessor: (d) => d.closing,
-  yAccessor: (d) => new Date(d.date).toLocaleDateString(),
+  xAccessor: (d) => d.value,
+  yAccessor: (d) => d.title,
 }
 
-const data = applestock.slice(5)
+const data = [
+  { title: 'Conversation', value: 40 },
+  { title: 'Pending', value: 70 },
+  { title: 'Decline', value: 80 },
+  { title: 'Approve', value: 90 },
+]
 
 function HorizontalBarChart({ defaultWidth, defaultHeight }) {
   const [ref, bounds] = useMeasure()
@@ -52,12 +58,14 @@ function HorizontalBarChart({ defaultWidth, defaultHeight }) {
 
   const yScale = scaleBand({
     range: [innerHeight, MARGIN],
-    domain: accessors.yAccessor,
+    domain: data.map(accessors.yAccessor),
   })
 
-  const colorScale = scaleBand({
-    range: [innerHeight, MARGIN],
-    domain: ['#33B469', '#F04438', '#E2BF07', '#151646'],
+  const colors = ['#151646', '#E2BF07', '#F04438', '#33B469']
+  const yValues = data.map(accessors.yAccessor)
+  const colorMap = {}
+  yValues.forEach((v, index) => {
+    colorMap[v] = colors[index]
   })
 
   const {
@@ -78,20 +86,20 @@ function HorizontalBarChart({ defaultWidth, defaultHeight }) {
         viewBox={`0 0 ${responsiveWidth} ${responsiveHeight}`}>
         <Group left={MARGIN}>
           {data.map((d) => {
-            const xValue = accessors.xAccessor
-            const barWidth = 10
-            const barHeight = innerWidth - xScale(accessors.xAccessor(d)) ?? 0
-            const barX = xScale(xValue)
-            const barY = innerHeight - barWidth
+            const yValue = accessors.yAccessor(d)
+            const barWidth = xScale(accessors.xAccessor(d)) ?? 0
+            const barHeight = 10
+            const barY = yScale(yValue)
+            const barX = 0
 
             return (
               <Bar
-                key={`bar-${xValue}`}
+                key={`bar-${yValue}`}
                 x={barX}
                 y={barY}
-                width={barHeight}
-                height={barWidth}
-                fill={colorScale(accessors.yAccessor(d))}
+                width={barWidth}
+                height={barHeight}
+                fill={colorMap[accessors.yAccessor(d)]}
                 onClick={() => {}}
                 onMouseLeave={() => {
                   tooltipTimeout = window.setTimeout(() => {
@@ -146,7 +154,25 @@ function HorizontalBarChart({ defaultWidth, defaultHeight }) {
             hideAxisLine={true}
             hideTicks={true}
             left={MARGIN}
-            scale={xScale}
+            scale={yScale}
+            tickLabelProps={() => ({
+              dy: '-45',
+              fontWeight: 600,
+              fontSize: '1rem',
+              textAnchor: 'middle',
+              color: 'red',
+            })}
+            // I'm just using this to get used to custom tick components
+            tickComponent={(tickRendererProps) => {
+              const { formattedValue } = tickRendererProps
+              return (
+                <text
+                  {...tickRendererProps}
+                  style={{ writingMode: 'vertical-rl' }}>
+                  {formattedValue}
+                </text>
+              )
+            }}
           />
         </Group>
       </svg>
@@ -165,6 +191,14 @@ function HorizontalBarChart({ defaultWidth, defaultHeight }) {
       )}
     </>
   )
+}
+
+function Tick({ tickRendererProps }) {
+  return <span {...tickRendererProps}>Text</span>
+}
+
+Tick.propTypes = {
+  tickRendererProps: any,
 }
 
 HorizontalBarChart.propTypes = {
