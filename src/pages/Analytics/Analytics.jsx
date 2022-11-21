@@ -15,6 +15,7 @@ import { Group } from '@visx/group'
 import { AxisBottom } from '@visx/axis'
 import BarChart from '../../components/BarChart/BarChart'
 import BarChartRoundTop from '../../components/BarChartRoundTop'
+import HorizontalBarChart from '../../components/HorizontalBarChart/HorizontalBarChart'
 
 function Analytics() {
   const barChartData = appleStock.slice(0, 22) // End exclusive
@@ -188,6 +189,9 @@ function Analytics() {
           data={barChartData}
         />
       </div>
+      {/* <div style={{ position: 'relative', height: '500px' }}>
+        <HorizontalBarChart width={500} />
+      </div> */}
     </div>
   )
 }

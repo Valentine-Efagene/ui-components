@@ -2,7 +2,6 @@ import {
   AnimatedAxis, // any of these can be non-animated equivalents
   AnimatedGrid,
   AnimatedAreaSeries,
-  AnimatedLineSeries,
   XYChart,
   Tooltip,
 } from '@visx/xychart'
