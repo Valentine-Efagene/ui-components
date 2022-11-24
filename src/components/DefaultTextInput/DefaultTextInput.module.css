@@ -68,6 +68,17 @@
   color: #ff7171 !important;
 }
 
+/* This order matters. The user-invalid should be checked
+after the normal invalid check. This way, errors from 
+the back end will be cleared once the input gets valid 
+on the front end
+
+Note however that :user-invalid is experimental
+*/
+.input:not(:user-invalid) ~ .errorMessage {
+  display: none;
+}
+
 .input::placeholder {
   font-family: 'Public Sans', sans-serif;
   font-style: normal;
@@ -81,7 +92,7 @@
 }
 
 .errorMessage {
-  display: none;
+  /* display: none; */
   grid-row: 3;
   text-align: left;
   color: currentColor;

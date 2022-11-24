@@ -9,6 +9,7 @@ import {
   string,
 } from 'prop-types'
 import React from 'react'
+import { useState } from 'react'
 import styles from './DefaultTextInput.module.css'
 
 function DefaultTextInput({
@@ -36,8 +37,8 @@ function DefaultTextInput({
   labelClassName,
 }) {
   let stateColor = '#4F4F4F'
-
   let state = 'normal'
+  const [showMessage, setShowMessage] = useState(false)
 
   if (errorMessage) {
     state = 'error'
@@ -75,7 +76,13 @@ function DefaultTextInput({
           className={`${styles.input} ${inputClassName}`}
           name={name}
           id={id}
-          onChange={onChange}
+          onChange={(e) => {
+            // This is a fallback for browsers that do not support
+            // :user-invalid
+            const isValid = e.target.reportValidity()
+            setShowMessage(!isValid)
+            onChange(e)
+          }}
           onBlur={onBlur}
           onInvalid={onInvalid}
           autoComplete={`${autoComplete}`}
@@ -108,10 +115,12 @@ function DefaultTextInput({
           onFocus={onFocus}
         />
       )}
-      <img className={styles.icon} src="/assets/input_error.svg" alt="" />
-      <span className={styles.errorMessage} style={{ color: stateColor }}>
-        {errorMessage}
-      </span>
+      <img className={styles.icon} src="/asset/img/input_error.svg" alt="" />
+      {errorMessage && showMessage && (
+        <span className={styles.errorMessage} style={{ color: stateColor }}>
+          {errorMessage}
+        </span>
+      )}
     </div>
   )
 }
