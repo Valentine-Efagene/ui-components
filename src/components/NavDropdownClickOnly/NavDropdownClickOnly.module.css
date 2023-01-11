@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon {
+  margin-left: 5px;
+  transition-duration: 300ms;
+}
+
+details[open] .icon {
+  transform: rotateX(-180deg);
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  justify-content: space-between;
+  background-color: #ffffff;
+  user-select: none;
+  font-size: 1.125rem;
+}
+
+.content {
+  width: 100%;
+  padding: 1rem 0;
+  background-color: #ffffff;
+  display: grid;
+  grid-template-columns: 1fr;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+  }
+}

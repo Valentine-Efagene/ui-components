@@ -1,0 +1,36 @@
+.tts {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.icon {
+  margin: 5px;
+}
+
+@media screen and (min-width: 500px) {
+  .tts {
+    overflow-x: auto;
+  }
+
+  .tts > * + * {
+    margin-left: 5px;
+  }
+}
+
+.tts .listenPrompt {
+  font-family: 'Heebo', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+@media screen and (max-width: 600px) {
+  .tts {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+}

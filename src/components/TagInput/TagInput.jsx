@@ -60,7 +60,7 @@ function TagInputBox({
             onClick={() => {
               handleSingleDelete(index)
             }}>
-            <img src="/assets/cancel.svg" alt="X" />
+            <img src="/asset/img/cancel.svg" alt="X" />
           </button>
         </li>
       ))}

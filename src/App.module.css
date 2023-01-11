@@ -6,6 +6,39 @@
   background-color: #201d47;
 }
 
+.buttonLike {
+  cursor: pointer;
+  background-color: coral;
+  padding: 60px;
+  border-radius: 10px;
+  user-select: none;
+}
+
+ul {
+  text-align: left;
+  background-color: coral;
+}
+
+button {
+  padding: 20px;
+  background-color: cadetblue;
+  color: #ffffff;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+button:hover {
+  opacity: 0.5;
+}
+
+button:nth-child(2) {
+  background-color: coral;
+}
+
+li {
+  text-align: left;
+}
+
 .cardBackground {
   position: relative;
   width: calc(100vw - 40px);

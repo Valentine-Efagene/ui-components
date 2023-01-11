@@ -7,8 +7,7 @@ import { scaleOrdinal } from '@visx/scale'
 import { shape, string } from 'prop-types'
 
 import styles from './DoughnutChart.module.css'
-import { number } from 'prop-types'
-import { arrayOf } from 'prop-types'
+import { number, arrayOf } from 'prop-types'
 
 /**
  * 
