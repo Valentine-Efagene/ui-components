@@ -1,0 +1,82 @@
+.container {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    position: fixed;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1.25rem;
+    bottom: 1.25rem;
+    right: 1.25rem;
+  }
+
+  .toggle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #151646;
+    border: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav {
+    right: 20vw;
+    display: flex;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    visibility: visible;
+
+    background: #ffffff;
+    box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.25);
+  }
+
+  .hidden {
+    visibility: collapse;
+    user-select: none;
+  }
+
+  .nav .heading {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 26px;
+    letter-spacing: 0.07em;
+    color: #f8f7f7;
+    background: #151646;
+    padding: 0.5rem 1rem;
+  }
+
+  .nav .pageLink {
+    padding: 0.2rem 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 5px 0;
+
+    font-family: 'Heebo', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 0.06em;
+    color: rgba(39, 38, 44, 0.7);
+  }
+
+  .nav .activePageLink {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 0.06em;
+    color: #27262c;
+    border-left: 2.5px solid #000000;
+  }
+}

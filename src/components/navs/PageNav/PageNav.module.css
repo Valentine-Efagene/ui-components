@@ -1,0 +1,48 @@
+.nav {
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  top: 64px;
+  height: fit-content;
+  border-left: 2px solid #0000003f;
+  margin-left: auto;
+  margin-top: 0;
+}
+
+.nav .pageLink:not(:nth-child(1)) {
+  margin-top: 5px;
+}
+
+.nav .pageLink {
+  user-select: none;
+  cursor: pointer;
+  text-decoration: none;
+  padding-left: 10px;
+
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: 0.06em;
+  color: rgba(39, 38, 44, 0.7);
+}
+
+.nav .activePageLink {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: 0.06em;
+  color: #27262c;
+  border-left: 2px solid #00000072;
+  position: relative;
+  left: -2px;
+}
+
+@media screen and (max-width: 800px) {
+  .nav {
+    display: none;
+  }
+}
