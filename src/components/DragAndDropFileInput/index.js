@@ -1,3 +1,1 @@
-import DragAndDropFileInput from './DragAndDropFileInput'
-
-export default DragAndDropFileInput
+export { default } from './DragAndDropFileInput';

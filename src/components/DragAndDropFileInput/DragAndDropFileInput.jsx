@@ -1,8 +1,7 @@
-import { object } from 'prop-types'
-import { func, string } from 'prop-types'
-import React, { useRef } from 'react'
-import { useId } from 'react'
-import styles from './DragAndDropFileInput.module.css'
+import { object } from 'prop-types';
+import { func, string } from 'prop-types';
+import React, { useEffect, useRef } from 'react';
+import styles from './DragAndDropFileInput.module.css';
 
 /**
  * Since the react documentation says file input must be uncontrolled,
@@ -18,6 +17,7 @@ import styles from './DragAndDropFileInput.module.css'
  * @param {string} info Additional information to display
  * @param {comma separated string} accept File types to accept
  * @param {state update function} setState
+ * @param {object} state
  */
 function DragAndDropFileInput({
   accept,
@@ -28,53 +28,64 @@ function DragAndDropFileInput({
   className,
   style,
   id,
+  state,
 }) {
-  const fileInputRef = useRef()
+  const fileInputRef = useRef();
+
+  useEffect(() => {
+    if (fileInputRef == null) return;
+
+    if (state == null || state == '') {
+      fileInputRef.current.value = '';
+      fileInputRef.current.files = null;
+    }
+  }, [state]);
+
   /**
    *
    * @param {DragEvent} event
    */
-  const handleDragOver = (event) => {
-    event.preventDefault()
-  }
+  const handleDragOver = event => {
+    event.preventDefault();
+  };
 
   /**
    *
    * @param {DropEvent} event
    */
-  const handleDrop = (event) => {
-    event.preventDefault()
-    const files = []
+  const handleDrop = event => {
+    event.preventDefault();
+    const files = [];
 
     if (event.dataTransfer.items) {
       // Use DataTransferItemList interface to access the file(s)
-      ;[...event.dataTransfer.items].forEach((item, i) => {
+      [...event.dataTransfer.items].forEach((item, i) => {
         // If dropped items aren't files, reject them
         if (item.kind === 'file') {
-          const file = item.getAsFile()
+          const file = item.getAsFile();
           //console.log(`... file[${i}].name = ${file.name}`);
-          files.push(file)
+          files.push(file);
         }
-      })
+      });
     } else {
       // Use DataTransfer interface to access the file(s)
-      ;[...event.dataTransfer.files].forEach((file, i) => {
-        console.log(`... file[${i}].name = ${file.name}`)
-        files.push(file)
-      })
+      [...event.dataTransfer.files].forEach((file, i) => {
+        //console.log(`... file[${i}].name = ${file.name}`);
+        files.push(file);
+      });
     }
 
-    setState(files)
-  }
+    setState(files);
+  };
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    ;[...fileInputRef.current.files].forEach((file) => {
-      console.log(file.name)
-    })
+  const handleSubmit = event => {
+    event.preventDefault();
+    // [...fileInputRef.current.files].forEach(file => {
+    //   console.log(file.name);
+    // });
 
-    setState(fileInputRef.current?.files)
-  }
+    setState(fileInputRef.current?.files);
+  };
 
   return (
     <label
@@ -86,7 +97,6 @@ function DragAndDropFileInput({
       <img id={styles.prompt_img} src={icon} />
       <strong id={styles.prompt}>{prompt}</strong>
       <p id={styles.info}>{info}</p>
-      Choose file
       <input
         ref={fileInputRef}
         type="file"
@@ -98,7 +108,7 @@ function DragAndDropFileInput({
         id={id}
       />
     </label>
-  )
+  );
 }
 
 DragAndDropFileInput.propTypes = {
@@ -110,11 +120,12 @@ DragAndDropFileInput.propTypes = {
   className: string,
   style: object,
   id: string,
-}
+  state: object,
+};
 
 DragAndDropFileInput.defaultProps = {
   accept:
     '.ppt,.pptx,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document, audio/*, video/*, image/*, .pdf, .csv',
-}
+};
 
-export default DragAndDropFileInput
+export default DragAndDropFileInput;

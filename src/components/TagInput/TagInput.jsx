@@ -5,6 +5,16 @@ import { string } from 'prop-types'
 import React from 'react'
 import styles from './TagInput.module.css'
 
+TagInput.propTypes = {
+  clearButtonClass: string,
+  clearButtonStyle: object,
+  className: string,
+  style: object,
+  setTags: func,
+  tags: array,
+  enableClearAll: bool,
+}
+
 /**
  *
  * @param {string} className CSS class
@@ -16,7 +26,7 @@ import styles from './TagInput.module.css'
  * @param {(Array<string>) => void} setTags Any function that takes an array of strings, and returns void
  * @returns
  */
-function TagInputBox({
+export default function TagInput({
   className,
   enableClearAll,
   style,
@@ -27,16 +37,10 @@ function TagInputBox({
 }) {
   const handleKeyUp = (event) => {
     if (event.key === 'Enter') {
-      const timeout = setTimeout(() => {
-        const tag = event.target.value.trim()
-        event.target.value = ''
-        const _tags = [...tags]
-        setTags(
-          tag?.length === 0 || tags.includes(tag) ? _tags : [..._tags, tag]
-        )
-
-        clearTimeout(timeout)
-      }, 10)
+      const tag = event.target.value.trim()
+      event.target.value = ''
+      const _tags = [...tags]
+      setTags(tag?.length === 0 || tags.includes(tag) ? _tags : [..._tags, tag])
     }
   }
 
@@ -81,15 +85,3 @@ function TagInputBox({
     </ul>
   )
 }
-
-TagInputBox.propTypes = {
-  clearButtonClass: string,
-  clearButtonStyle: object,
-  className: string,
-  style: object,
-  setTags: func,
-  tags: array,
-  enableClearAll: bool,
-}
-
-export default TagInputBox

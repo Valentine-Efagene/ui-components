@@ -1,27 +1,29 @@
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import styles from './App.module.css'
+import SmartTagInput from './components/SmartTagInput/SmartTagInput'
 
 function App() {
-  const [counter, setCounter] = useState(0)
+  const [tags, setTags] = useState([])
+  const [selection, setSelection] = useState([])
 
   useEffect(() => {
-    setInterval(() => {
-      setCounter((prevState) => prevState + 1)
-    }, 1000)
+    fetch('http://localhost:8000/test/api/tags')
+      .then((res) => res?.json())
+      .then((data) => setTags(data))
   }, [])
 
   return (
-    <div className="App">
+    <div className={`${styles.container} App`}>
       <header className="App-header">
-        <div
-          className={styles.buttonLike}
-          onClick={() => {
-            setCounter((prevState) => prevState + 1)
-          }}>
-          {counter}
-        </div>
+        <SmartTagInput
+          style={{ width: '70%' }}
+          name="tags"
+          id="tags"
+          tags={tags ?? []}
+          selection={selection}
+          setSelection={setSelection}
+        />
       </header>
     </div>
   )
