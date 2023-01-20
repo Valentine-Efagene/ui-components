@@ -3,7 +3,7 @@ import { object } from 'prop-types'
 import { oneOfType } from 'prop-types'
 import { array } from 'prop-types'
 import { string } from 'prop-types'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styles from './SmartTagInput.module.css'
 
 SmartTagInput.propTypes = {
@@ -32,6 +32,40 @@ SmartTagInput.propTypes = {
  * @param {Array<string>} tags Array of tags
  * @param {bool} enableClearAll Whether to show a 'clear all' button
  * @param {(Array<string>) => void} setTags Any function that takes an array of strings, and returns void
+ * 
+ * @example
+ * 
+ * function App() {
+  const [tags, setTags] = useState([])
+  const [selection, setSelection] = useState([])
+  const formatter = new Intl.ListFormat('en', {
+    style: 'long',
+    type: 'conjunction',
+  })
+
+  useEffect(() => {
+    fetch('http://localhost:8000/test/api/tags')
+      .then((res) => res?.json())
+      .then((data) => setTags(data))
+  }, [])
+
+  return (
+    <div className={`${styles.container} App`}>
+      <header className="App-header">
+        <p>{formatter.format(selection.map((tag) => tag.title))}</p>
+        <SmartTagInput
+          style={{ width: '70%' }}
+          name="tags"
+          id="tags"
+          tags={tags ?? []}
+          selection={selection}
+          setSelection={setSelection}
+        />
+      </header>
+    </div>
+  )
+}
+ * 
  * @returns
  */
 export default function SmartTagInput({
@@ -43,15 +77,11 @@ export default function SmartTagInput({
   tags = [],
   selection = [],
   setSelection,
-  id,
-  name,
 }) {
   const [searchText, setSearchText] = useState('')
   const [showOptions, setShowOptions] = useState(false)
-
-  const toggleShowOptions = () => setShowOptions((prevState) => !prevState)
-  const openOptions = () => setShowOptions(true)
-  const hideOptions = () => setShowOptions(false)
+  const [active, setActive] = useState(null)
+  const toggleOptions = () => setShowOptions((prevState) => !prevState)
 
   const handleSingleDelete = (id) => {
     setSelection((prevState) => prevState.filter((tag) => tag.id != id))
@@ -62,23 +92,24 @@ export default function SmartTagInput({
   }
 
   const filtered = (tags) => {
+    const lessSelected =
+      selection?.length > 0
+        ? tags.filter((tag) => !selection.includes(tag))
+        : tags
+
     return searchText.trim() == null
-      ? tags
-      : tags?.filter((tag) => tag?.title?.includes(searchText))
+      ? lessSelected
+      : lessSelected?.filter((tag) => tag?.title?.includes(searchText))
   }
 
   const handleSelect = (id) => {
-    if (selection.find((tag) => tag?.id == id)) {
-      hideOptions()
-      return
-    }
+    if (id == null) return
 
     const tag = tags.find((tag) => tag?.id == id)
 
     if (tag == null) return
 
     setSelection((prevState) => [...prevState, tag])
-    hideOptions()
   }
 
   return (
@@ -107,18 +138,72 @@ export default function SmartTagInput({
       </div>
 
       <input
+        onKeyUp={(e) => {
+          if (['ArrowUp', 'ArrowDown'].includes(e.key)) {
+            setShowOptions(true)
+          }
+
+          if (e.key == 'Escape') {
+            setShowOptions(false)
+            // ArrowDown, ArrowUp, Escape
+          } else if (e.key == 'ArrowDown') {
+            setActive((prevState) => {
+              if (tags.length === 0) {
+                return null
+              }
+
+              if (prevState == null) {
+                return filtered(tags)?.[0]
+              }
+
+              if (prevState.id == filtered(tags)?.[-1]?.id) {
+                return prevState
+              }
+
+              const filteredTags = filtered(tags)
+              const index = filteredTags.findIndex(
+                (tag) => tag.id === active.id
+              )
+              return filteredTags[index + 1]
+            })
+          } else if (e.key == 'ArrowUp') {
+            setActive((prevState) => {
+              if (tags.length === 0) {
+                return null
+              }
+
+              if (prevState == null) {
+                return filtered(tags)?.[0]
+              }
+
+              if (prevState.id == filtered(tags)?.[0]?.id) {
+                return prevState
+              }
+
+              const filteredTags = filtered(tags)
+              const index = filteredTags.findIndex(
+                (tag) => tag.id === active.id
+              )
+              return filteredTags[index - 1]
+            })
+          } else if (e.key == 'Enter') {
+            handleSelect(active?.id)
+            setShowOptions(false)
+          }
+        }}
+        onClick={toggleOptions}
         className={styles.textInput}
         type="text"
-        onClick={toggleShowOptions}
-        onFocus={showOptions}
         onChange={(e) => setSearchText(e.target.value ?? '')}
         placeholder="Enter tag"
       />
       {showOptions && (
-        <div className={styles.select} onBlur={hideOptions}>
+        <div className={styles.options}>
           {filtered(tags)?.map(({ id, title }) => (
             <button
-              className={styles.option}
+              className={`${active?.id == id ? styles.active : null} ${
+                styles.option
+              }`}
               onClick={() => {
                 handleSelect(id)
               }}

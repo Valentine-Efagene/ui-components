@@ -62,9 +62,10 @@
   padding: 0.7rem 0.3rem;
   width: 100%;
   border-radius: var(--border-radius);
+  outline: none;
 }
 
-.select {
+.options {
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -73,6 +74,10 @@
   overflow-y: scroll;
   border: 1px solid #c0b8b8;
   background-color: #ffff;
+}
+
+.container:not(:focus-within) .options {
+  display: none;
 }
 
 .option {
@@ -86,7 +91,8 @@
   padding: 1rem 0.3rem;
 }
 
-.option:hover {
+.option:hover,
+.active {
   background-color: #c0b8b8;
 }
 
