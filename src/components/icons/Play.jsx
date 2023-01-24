@@ -1,6 +1,6 @@
-import { number } from 'prop-types';
-import { string } from 'prop-types';
-import React from 'react';
+import { number } from 'prop-types'
+import { string } from 'prop-types'
+import React from 'react'
 
 Play.propTypes = {
   width: string,
@@ -8,7 +8,7 @@ Play.propTypes = {
   fill: string,
   className: string,
   fillOpacity: number,
-};
+}
 
 export default function Play({
   width = '14',
@@ -32,5 +32,5 @@ export default function Play({
         fillOpacity={`${fillOpacity}`}
       />
     </svg>
-  );
+  )
 }

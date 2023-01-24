@@ -4,6 +4,7 @@ import { oneOfType } from 'prop-types'
 import { array } from 'prop-types'
 import { string } from 'prop-types'
 import React, { useState } from 'react'
+import { Cancel } from '../icons'
 import styles from './SmartTagInput.module.css'
 
 SmartTagInput.propTypes = {
@@ -85,6 +86,7 @@ export default function SmartTagInput({
 
   const handleSingleDelete = (id) => {
     setSelection((prevState) => prevState.filter((tag) => tag.id != id))
+    //setSelection(selection.filter((tag) => tag.id != id))
   }
 
   const deleteAll = () => {
@@ -94,7 +96,7 @@ export default function SmartTagInput({
   const filtered = (tags) => {
     const lessSelected =
       selection?.length > 0
-        ? tags.filter((tag) => !selection.includes(tag))
+        ? tags.filter((tag) => !selection.some((sel) => sel.id === tag.id))
         : tags
 
     return searchText.trim() == null
@@ -105,11 +107,14 @@ export default function SmartTagInput({
   const handleSelect = (id) => {
     if (id == null) return
 
+    if (selection.find((tag) => tag?.id == id)) return
+
     const tag = tags.find((tag) => tag?.id == id)
 
     if (tag == null) return
 
     setSelection((prevState) => [...prevState, tag])
+    //setSelection([...selection, tag])
   }
 
   return (
@@ -123,7 +128,7 @@ export default function SmartTagInput({
               onClick={() => {
                 handleSingleDelete(id)
               }}>
-              <img src="/asset/img/cancel.svg" alt="X" />
+              <Cancel className={styles.cancelIcon} />
             </button>
           </span>
         ))}
@@ -138,6 +143,17 @@ export default function SmartTagInput({
       </div>
 
       <input
+        onBlur={() => {
+          setActive(null)
+
+          const timeout = setTimeout(() => {
+            setShowOptions(false)
+
+            return () => {
+              clearTimeout(timeout)
+            }
+          }, 200)
+        }}
         onKeyUp={(e) => {
           if (['ArrowUp', 'ArrowDown'].includes(e.key)) {
             setShowOptions(true)
@@ -145,7 +161,6 @@ export default function SmartTagInput({
 
           if (e.key == 'Escape') {
             setShowOptions(false)
-            // ArrowDown, ArrowUp, Escape
           } else if (e.key == 'ArrowDown') {
             setActive((prevState) => {
               if (tags.length === 0) {
@@ -166,7 +181,7 @@ export default function SmartTagInput({
               )
               return filteredTags[index + 1]
             })
-          } else if (e.key == 'ArrowUp') {
+          } else if (e.key === 'ArrowUp') {
             setActive((prevState) => {
               if (tags.length === 0) {
                 return null
@@ -176,7 +191,7 @@ export default function SmartTagInput({
                 return filtered(tags)?.[0]
               }
 
-              if (prevState.id == filtered(tags)?.[0]?.id) {
+              if (prevState.id === filtered(tags)?.[0]?.id) {
                 return prevState
               }
 
@@ -186,9 +201,10 @@ export default function SmartTagInput({
               )
               return filteredTags[index - 1]
             })
-          } else if (e.key == 'Enter') {
-            handleSelect(active?.id)
-            setShowOptions(false)
+          } else if (e.key === 'Enter') {
+            //console.log('Enter');
+            //handleSelect(active?.id); // Buggy
+            //setShowOptions(false);
           }
         }}
         onClick={toggleOptions}

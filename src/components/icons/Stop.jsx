@@ -1,6 +1,6 @@
-import { number } from 'prop-types';
-import { string } from 'prop-types';
-import React from 'react';
+import { number } from 'prop-types'
+import { string } from 'prop-types'
+import React from 'react'
 
 Stop.propTypes = {
   width: string,
@@ -8,7 +8,7 @@ Stop.propTypes = {
   fill: string,
   className: string,
   fillOpacity: number,
-};
+}
 
 export default function Stop({
   width = '14',
@@ -32,5 +32,5 @@ export default function Stop({
         fillOpacity={`${fillOpacity}`}
       />
     </svg>
-  );
+  )
 }

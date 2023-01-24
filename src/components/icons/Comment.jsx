@@ -1,12 +1,12 @@
-import { string } from 'prop-types';
-import React from 'react';
+import { string } from 'prop-types'
+import React from 'react'
 
 Comment.propTypes = {
   width: string,
   height: string,
   fill: string,
   className: string,
-};
+}
 
 export default function Comment({
   width = '21',
@@ -27,5 +27,5 @@ export default function Comment({
         fill={fill}
       />
     </svg>
-  );
+  )
 }

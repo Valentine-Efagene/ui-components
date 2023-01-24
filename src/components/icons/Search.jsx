@@ -1,5 +1,5 @@
-import { string } from 'prop-types';
-import React from 'react';
+import { string } from 'prop-types'
+import React from 'react'
 
 Search.propTypes = {
   width: string,
@@ -7,7 +7,7 @@ Search.propTypes = {
   stroke: string,
   fill: string,
   className: string,
-};
+}
 
 export default function Search({
   width = '18',
@@ -39,5 +39,5 @@ export default function Search({
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }

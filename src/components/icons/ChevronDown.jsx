@@ -1,12 +1,12 @@
-import { string } from 'prop-types';
-import React from 'react';
+import { string } from 'prop-types'
+import React from 'react'
 
 ChevronDown.propTypes = {
   width: string,
   height: string,
   fill: string,
   className: string,
-};
+}
 
 export default function ChevronDown({
   width = '16',
@@ -28,5 +28,5 @@ export default function ChevronDown({
         d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
       />
     </svg>
-  );
+  )
 }

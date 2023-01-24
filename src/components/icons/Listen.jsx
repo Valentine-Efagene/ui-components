@@ -1,6 +1,6 @@
-import { number } from 'prop-types';
-import { string } from 'prop-types';
-import React from 'react';
+import { number } from 'prop-types'
+import { string } from 'prop-types'
+import React from 'react'
 
 Listen.propTypes = {
   width: string,
@@ -9,7 +9,7 @@ Listen.propTypes = {
   className: string,
   opacity: string,
   fillOpacity: number,
-};
+}
 
 export default function Listen({
   width = '23',
@@ -34,5 +34,5 @@ export default function Listen({
         fill={fill}
       />
     </svg>
-  );
+  )
 }

@@ -1,12 +1,12 @@
-import { string } from 'prop-types';
-import React from 'react';
+import { string } from 'prop-types'
+import React from 'react'
 
 Unlike.propTypes = {
   width: string,
   height: string,
   fill: string,
   className: string,
-};
+}
 
 export default function Unlike({
   width = '22',
@@ -27,5 +27,5 @@ export default function Unlike({
         fill={fill}
       />
     </svg>
-  );
+  )
 }

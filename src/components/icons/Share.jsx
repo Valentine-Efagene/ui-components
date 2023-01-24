@@ -1,6 +1,6 @@
-import { number } from 'prop-types';
-import { string } from 'prop-types';
-import React from 'react';
+import { number } from 'prop-types'
+import { string } from 'prop-types'
+import React from 'react'
 
 Share.propTypes = {
   width: string,
@@ -9,7 +9,7 @@ Share.propTypes = {
   className: string,
   stroke: string,
   opacity: number,
-};
+}
 
 export default function Share({
   width = '16',
@@ -33,5 +33,5 @@ export default function Share({
         fill={stroke}
       />
     </svg>
-  );
+  )
 }

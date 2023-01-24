@@ -1,5 +1,5 @@
-import { string } from 'prop-types';
-import React from 'react';
+import { string } from 'prop-types'
+import React from 'react'
 
 Add.propTypes = {
   width: string,
@@ -7,7 +7,7 @@ Add.propTypes = {
   fill: string,
   className: string,
   crossFill: string,
-};
+}
 
 export default function Add({
   width = '30',
@@ -49,5 +49,5 @@ export default function Add({
         <rect x="0.5" width="30" height="30" fill={crossFill} />
       </g>
     </svg>
-  );
+  )
 }

@@ -1,5 +1,5 @@
-import { string } from 'prop-types';
-import React from 'react';
+import { string } from 'prop-types'
+import React from 'react'
 
 Filter.propTypes = {
   width: string,
@@ -7,7 +7,7 @@ Filter.propTypes = {
   stroke: string,
   fill: string,
   className: string,
-};
+}
 
 export default function Filter({
   width = '18',
@@ -47,5 +47,5 @@ export default function Filter({
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }

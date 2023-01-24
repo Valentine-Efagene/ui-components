@@ -1,5 +1,5 @@
-import { string } from 'prop-types';
-import React from 'react';
+import { string } from 'prop-types'
+import React from 'react'
 
 Like.propTypes = {
   width: string,
@@ -7,7 +7,7 @@ Like.propTypes = {
   fill: string,
   className: string,
   crossFill: string,
-};
+}
 
 export default function Like({
   width = '22',
@@ -28,5 +28,5 @@ export default function Like({
         fill={fill}
       />
     </svg>
-  );
+  )
 }

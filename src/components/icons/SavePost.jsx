@@ -1,12 +1,12 @@
-import { string } from 'prop-types';
-import React from 'react';
+import { string } from 'prop-types'
+import React from 'react'
 
 SavePost.propTypes = {
   width: string,
   height: string,
   fill: string,
   className: string,
-};
+}
 
 export default function SavePost({
   width = '21',
@@ -27,5 +27,5 @@ export default function SavePost({
         fill={fill}
       />
     </svg>
-  );
+  )
 }

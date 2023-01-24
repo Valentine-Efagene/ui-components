@@ -1,5 +1,5 @@
-import { string } from 'prop-types';
-import React from 'react';
+import { string } from 'prop-types'
+import React from 'react'
 
 Notification.propTypes = {
   width: string,
@@ -7,7 +7,7 @@ Notification.propTypes = {
   fill: string,
   className: string,
   dotFill: string,
-};
+}
 
 export default function Notification({
   width = '24',
@@ -44,5 +44,5 @@ export default function Notification({
         </clipPath>
       </defs>
     </svg>
-  );
+  )
 }

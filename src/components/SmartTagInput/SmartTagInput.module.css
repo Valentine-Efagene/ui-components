@@ -76,10 +76,6 @@
   background-color: #ffff;
 }
 
-.container:not(:focus-within) .options {
-  display: none;
-}
-
 .option {
   text-align: left;
   background-color: #00000000;

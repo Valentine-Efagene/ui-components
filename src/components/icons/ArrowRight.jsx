@@ -1,5 +1,5 @@
-import { string } from 'prop-types';
-import React from 'react';
+import { string } from 'prop-types'
+import React from 'react'
 
 ArrowRight.propTypes = {
   width: string,
@@ -12,7 +12,7 @@ ArrowRight.propTypes = {
   strokeLinecap: string,
   strokeMiterlimit: string,
   strokeLinejoin: string,
-};
+}
 
 export default function ArrowRight({
   width = '24',
@@ -51,5 +51,5 @@ export default function ArrowRight({
         strokeLinejoin={strokeLinejoin}
       />
     </svg>
-  );
+  )
 }
