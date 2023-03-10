@@ -1,14 +1,13 @@
-import React, { ChangeEvent, useRef, MutableRefObject, RefObject } from "react";
-import { Form } from "react-bootstrap";
-import styles from "./OTP.module.css";
+import React, { ChangeEvent, useRef, MutableRefObject, RefObject } from 'react'
+import styles from './OTP.module.css'
 
 interface IOTPProps {
-  style?: { [key: string]: string };
-  className?: string;
-  values: Array<string | undefined | number>;
-  setValues: any;
-  name?: string;
-  id?: string;
+  style?: { [key: string]: string }
+  className?: string
+  values: Array<string | undefined | number>
+  setValues: any
+  name?: string
+  id?: string
 }
 
 /**
@@ -42,51 +41,51 @@ export default function OTP({
   className,
   values,
   setValues,
-  name = "otp",
-  id = "otp",
+  name = 'otp',
+  id = 'otp',
 }: IOTPProps) {
-  const boxRef0 = useRef<HTMLInputElement>();
-  const boxRef1 = useRef<HTMLInputElement>();
-  const boxRef2 = useRef<HTMLInputElement>();
-  const boxRef3 = useRef<HTMLInputElement>();
+  const boxRef0 = useRef<HTMLInputElement>()
+  const boxRef1 = useRef<HTMLInputElement>()
+  const boxRef2 = useRef<HTMLInputElement>()
+  const boxRef3 = useRef<HTMLInputElement>()
 
   const boxRefs: Array<MutableRefObject<HTMLInputElement | undefined>> = [
     boxRef0,
     boxRef1,
     boxRef2,
     boxRef3,
-  ];
+  ]
 
   const handleChange = (e: ChangeEvent) => {
-    const { name, value } = e.target as HTMLInputElement;
+    const { name, value } = e.target as HTMLInputElement
 
-    if (value == null) return;
+    if (value == null) return
 
-    const index: number = Number(name?.[name.length - 1]);
+    const index: number = Number(name?.[name.length - 1])
 
     setValues((prevState: any) => {
-      const temp = [...prevState];
-      temp[index] = Number(value);
+      const temp = [...prevState]
+      temp[index] = Number(value)
 
-      return temp;
-    });
+      return temp
+    })
 
     const next =
       index < values?.length - 1
         ? boxRefs?.[index + 1]?.current
-        : boxRefs?.[index]?.current;
+        : boxRefs?.[index]?.current
 
     if (next) {
-      next?.focus();
+      next?.focus()
     }
-  };
+  }
 
   return (
     <div className={`${className} ${styles.container}`} style={style}>
       {/* Get a range of values from 0 to N - 1, where N is the length of values
       This ensures uniqueness of keys */}
       {Array.from(Array(values.length).keys())?.map((key) => (
-        <Form.Control
+        <input
           key={key}
           name={`${name}${key}`}
           id={`${id}${key}`}
@@ -98,5 +97,5 @@ export default function OTP({
         />
       ))}
     </div>
-  );
+  )
 }
